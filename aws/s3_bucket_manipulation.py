@@ -5,7 +5,7 @@ from PIL import Image
 from dotenv import load_dotenv
 load_dotenv()
 
-s3_bucket_folder_name = "s3://lungxraydataset/data/train/NORMAL"
+s3_bucket_folder_path = "s3://lungxraydataset/data/train/NORMAL"
 aws_key = os.environ['AWS_KEY']
 aws_secret = os.environ['AWS_SECRET']
 resize_dimensions = os.environ['RESIZE_DIMENSIONS']
@@ -22,12 +22,12 @@ resize_dimensions: tuple[int, int] = tuple(
     map(int, os.environ["RESIZE_DIMENSIONS"].split("x"))
 )
 
-upload_path = "/".join(s3_bucket_folder_name.split("/")[:-1])
+upload_path = "/".join(s3_bucket_folder_path.split("/")[:-1])
 
 upload_path += "/resized/"
 
-bucket_name = s3_bucket_folder_name.split('/')[2]
-prefix = '/'.join(s3_bucket_folder_name.split('/')[3:])
+bucket_name = s3_bucket_folder_path.split('/')[2]
+prefix = '/'.join(s3_bucket_folder_path.split('/')[3:])
 
 print(bucket_name, prefix)
 
